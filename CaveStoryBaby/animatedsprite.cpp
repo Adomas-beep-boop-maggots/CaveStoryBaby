@@ -88,5 +88,6 @@ void AnimatedSprite::draw(Graphics &graphics, int x, int y) {
 
 		SDL_Rect sourceRect = this->_animations[this->_currentAnimation][this->_frameIndex];
 		graphics.blitSurface(this->_spriteSheet, &sourceRect, &destinationRectangle);
+		//SDL_RenderDrawRect(graphics)
 	}
 }

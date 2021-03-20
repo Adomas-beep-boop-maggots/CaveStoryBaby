@@ -40,10 +40,15 @@ public:
 	 */
 	void clear();
 
+	void drawOutLine(int x, int y, int w, int h);
+
 	/* SDL_Renderer* getRenderer
 	 * Returns the renderer
 	 */
 	SDL_Renderer* getRenderer() const;
+
+	int SDL_RenderDrawRect(SDL_Renderer* renderer,
+		const SDL_Rect* rect);
 
 private:
 	SDL_Window* _window;

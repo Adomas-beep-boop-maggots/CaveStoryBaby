@@ -1,6 +1,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <iostream>
 
 #include "graphics.h"
 #include "globals.h"
@@ -29,6 +30,15 @@ SDL_Surface* Graphics::loadImage(const std::string &filePath) {
 
 void Graphics::blitSurface(SDL_Texture* texture, SDL_Rect* sourceRectangle, SDL_Rect* destinationRectangle) {
 	SDL_RenderCopy(this->_renderer, texture, sourceRectangle, destinationRectangle);
+}
+
+void Graphics::drawOutLine(int x, int y, int w, int h) {
+	SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
+	//std::cout << x << " " << y << " " << w << " " << h << std::endl;
+	SDL_RenderDrawLine(_renderer, x, y, x, y + h);
+	SDL_RenderDrawLine(_renderer, x, y, x + w, y);
+	SDL_RenderDrawLine(_renderer, x + w, y + h, x, y + h);
+	SDL_RenderDrawLine(_renderer, x + w, y + h, x + w, y);
 }
 
 void Graphics::flip() {

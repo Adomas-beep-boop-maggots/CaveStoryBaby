@@ -2,6 +2,7 @@
 #define RECTANGLE_H
 
 #include "globals.h"
+#include <SDL.h>
 
 class Rectangle {
 public:
@@ -24,6 +25,8 @@ public:
 
 	const int getWidth() const { return this->_width; }
 	const int getHeight() const { return this->_height; }
+
+	//const SDL_Rect getSDL_Rect() const { return { this->_x, this->_y, this->_width, this->height}; }
 
 	const int getSide(const sides::Side side) const {
 		return

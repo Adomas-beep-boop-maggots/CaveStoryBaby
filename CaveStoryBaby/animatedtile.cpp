@@ -7,6 +7,7 @@ AnimatedTile::AnimatedTile(std::vector<Vector2> tilesetPositions, int duration,
 	_tilesetPositions(tilesetPositions),
 	_duration(duration),
 	_tileToDraw(0)
+	//E
 {}
 
 void AnimatedTile::update(int elapsedTime) {

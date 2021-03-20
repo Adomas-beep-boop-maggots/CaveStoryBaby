@@ -43,6 +43,8 @@ public:
 	const float getX() const;
 	const float getY() const;
 
+	const void outputInfo() const;
+
 private:
 	float _dx, _dy;
 

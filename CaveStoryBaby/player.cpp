@@ -1,5 +1,6 @@
 #include "player.h"
 #include "graphics.h"
+#include <iostream>
 
 namespace player_constants {
 	const float WALK_SPEED = 0.2f;
@@ -21,6 +22,7 @@ Player::Player(Graphics& graphics, Vector2 spawnPoint) :
 
 	this->setupAnimations();
 	this->playAnimation("RunRight");
+	//this->_sourceRect.w = 10;
 }
 
 void Player::setupAnimations() {
@@ -69,6 +71,7 @@ void Player::jump() {
 //void handleTileCollisions
 //Handles collisions with ALL tiles the player is colliding with
 void Player::handleTileCollisions(std::vector<Rectangle>& others) {
+	
 	//Figure out what side the collision happened on and move the player accordingly
 	for (int i = 0; i < others.size(); i++) {
 		sides::Side collisionSide = Sprite::getCollisionSide(others.at(i));
@@ -136,4 +139,9 @@ void Player::update(float elapsedTime) {
 	
 void Player::draw(Graphics &graphics) {
 	AnimatedSprite::draw(graphics, this->_x, this->_y);
+	graphics.drawOutLine(_x,_y,_boundingBox.getWidth(),_boundingBox.getHeight());
+}
+
+void const Player::outputInfo() const {
+	std::cout << _grounded << " " << this->_boundingBox.getWidth() << " " << this->_boundingBox.getHeight() << " " << std::ceil(_x) << " " << std::ceil(_y) << " "  << std::endl;
 }

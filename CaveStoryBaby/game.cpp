@@ -71,7 +71,6 @@ void Game::gameLoop() {
 		int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
 		this->update(std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME));
 		LAST_UPDATE_TIME = CURRENT_TIME_MS;
-
 		this->draw(graphics);
 	}
 }
@@ -83,11 +82,13 @@ void Game::draw(Graphics& graphics) {
 	this->_player.draw(graphics);
 
 	graphics.flip();
+
 }
 
 void Game::update(float elapsedTime) {
 	this->_player.update(elapsedTime);
 	this->_level.update(elapsedTime);
+	
 
 
 	//Check collisions
@@ -102,4 +103,6 @@ void Game::update(float elapsedTime) {
 if ((otherSlopes = this->_level.checkSlopeCollisions(this->_player.getBoundingBox())).size() > 0) {
 		this->_player.handleSlopeCollisions(otherSlopes);
 	}
+	_player.outputInfo();
+
 }
