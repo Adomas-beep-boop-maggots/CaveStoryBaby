@@ -21,8 +21,7 @@ Player::Player(Graphics& graphics, Vector2 spawnPoint) :
 	graphics.loadImage("Sprites/MyChar.png");
 
 	this->setupAnimations();
-	this->playAnimation("RunRight");
-	//this->_sourceRect.w = 10;
+	this->playAnimation("RunRight"); 
 }
 
 void Player::setupAnimations() {
@@ -31,6 +30,8 @@ void Player::setupAnimations() {
 	this->addAnimation(1, 0, 16, "IdleRight", 16, 16, Vector2(0,0));
 	this->addAnimation(4, runFrames, 0, "RunLeft", 16, 16, Vector2(0,0));
 	this->addAnimation(4, runFrames, 16, "RunRight", 16, 16, Vector2(0,0));
+	_width-=6;
+	_height-=2;
 }
 
 void Player::animationDone(std::string currentAnimation) {}
@@ -41,6 +42,14 @@ const float Player::getX() const {
 
 const float Player::getY() const {
 	return this->_y;
+}
+
+const float Player::getWidth() const {
+	return this->_width;
+}
+
+const float Player::getHeight() const {
+	return this->_height;
 }
 
 void Player::moveLeft() {
@@ -128,18 +137,18 @@ void Player::update(float elapsedTime) {
 	if (this->_dy <= player_constants::GRAVITY_CAP) {
 		this->_dy += player_constants::GRAVITY * elapsedTime;
 	}
+	//_boundingBox = 10;
 
 	//Move by dx
 	this->_x += this->_dx * elapsedTime;
 	//Move by dy
 	this->_y += this->_dy * elapsedTime;
-
 	AnimatedSprite::update(elapsedTime);
 }
 	
 void Player::draw(Graphics &graphics) {
 	AnimatedSprite::draw(graphics, this->_x, this->_y);
-	graphics.drawOutLine(_x,_y,_boundingBox.getWidth(),_boundingBox.getHeight());
+	//graphics.drawOutLine(_x,_y,_width * globals::SPRITE_SCALE,_height * globals::SPRITE_SCALE);
 }
 
 void const Player::outputInfo() const {

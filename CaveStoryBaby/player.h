@@ -43,6 +43,9 @@ public:
 	const float getX() const;
 	const float getY() const;
 
+	const float getWidth() const;
+	const float getHeight() const;
+
 	const void outputInfo() const;
 
 private:

@@ -14,6 +14,7 @@
 Graphics::Graphics() {
 	SDL_CreateWindowAndRenderer(globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT, 0, &this->_window, &this->_renderer);
 	SDL_SetWindowTitle(this->_window, "Cavestory");
+	SDL_SetRenderDrawColor(_renderer, 0, 0, 32, 255);
 }
 
 Graphics::~Graphics() {
@@ -33,7 +34,7 @@ void Graphics::blitSurface(SDL_Texture* texture, SDL_Rect* sourceRectangle, SDL_
 }
 
 void Graphics::drawOutLine(int x, int y, int w, int h) {
-	SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
+	//SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
 	//std::cout << x << " " << y << " " << w << " " << h << std::endl;
 	SDL_RenderDrawLine(_renderer, x, y, x, y + h);
 	SDL_RenderDrawLine(_renderer, x, y, x + w, y);

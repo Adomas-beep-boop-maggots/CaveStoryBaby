@@ -33,6 +33,7 @@ protected:
 	Rectangle _boundingBox;
 
 	float _x, _y;
+	float _width, _height;
 private:
 };
 

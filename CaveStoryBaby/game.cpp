@@ -78,16 +78,16 @@ void Game::gameLoop() {
 void Game::draw(Graphics& graphics) {
 	graphics.clear();
 
-	this->_level.draw(graphics);
 	this->_player.draw(graphics);
+	this->_level.draw(graphics);
 
 	graphics.flip();
 
 }
 
 void Game::update(float elapsedTime) {
-	this->_player.update(elapsedTime);
 	this->_level.update(elapsedTime);
+	this->_player.update(elapsedTime);
 	
 
 

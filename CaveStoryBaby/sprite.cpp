@@ -7,7 +7,9 @@ Sprite::Sprite() {}
 Sprite::Sprite(Graphics &graphics, const std::string &filePath, int sourceX, int sourceY, int width, int height,
 		float posX, float posY) :
 				_x(posX),
-				_y(posY)
+				_y(posY),
+				_width(width),
+				_height(height)
 {
 	this->_sourceRect.x = sourceX;
 	this->_sourceRect.y = sourceY;
@@ -18,21 +20,23 @@ Sprite::Sprite(Graphics &graphics, const std::string &filePath, int sourceX, int
 	if (this->_spriteSheet == NULL) {
 		printf("\nError: Unable to load image\n");
 	}
-	this->_boundingBox = Rectangle(this->_x, this->_y, width * globals::SPRITE_SCALE, height * globals::SPRITE_SCALE);
+	//this->_x = this->_x - 110;
+	this->_boundingBox = Rectangle(this->_x, this->_y, this->_width * globals::SPRITE_SCALE, this->_height * globals::SPRITE_SCALE);
 
 }
 
 Sprite::~Sprite() {}
 
-void Sprite::draw(Graphics &graphics, int x, int y) {
+void Sprite::draw(Graphics& graphics, int x, int y) {
 	SDL_Rect destinationRectangle = { x, y, this->_sourceRect.w * globals::SPRITE_SCALE,
 			this->_sourceRect.h * globals::SPRITE_SCALE };
 	graphics.blitSurface(this->_spriteSheet, &this->_sourceRect, &destinationRectangle);
 }
 
 void Sprite::update() {
+	
 	this->_boundingBox = Rectangle(this->_x, this->_y,
-		this->_sourceRect.w * globals::SPRITE_SCALE, this->_sourceRect.h * globals::SPRITE_SCALE);
+		this->_width * globals::SPRITE_SCALE, this->_height * globals::SPRITE_SCALE);
 }
 
 const Rectangle Sprite::getBoundingBox() const {
